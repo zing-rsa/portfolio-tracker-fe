@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { API_HOST, API_KEY } from "../../../constants"
 
-export async function GET(req: NextRequest) {
+export async function GET() {
 
   const response = await fetch(`${API_HOST}/api/v1/balances/historic`, {
     method: "GET",
