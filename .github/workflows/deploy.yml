@@ -29,4 +29,9 @@ jobs:
 
       - name: Deploy Project Artifacts to Vercel
         run: | 
-            vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+            vercel deploy --prod \
+            --env NEXT_PUBLIC_API_HOST="https://prt-tracker-fe.vercel.app/" \
+            --env API_KEY=${{ secrets.API_KEY }} \
+            --build-env NEXT_PUBLIC_API_HOST="https://prt-tracker-fe.vercel.app/" \
+            --build-env API_KEY=${{ secrets.API_KEY }} \
+            --token=${{ secrets.VERCEL_TOKEN }}

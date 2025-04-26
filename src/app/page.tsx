@@ -12,8 +12,7 @@ import {
 } from 'recharts';
 import { AddressBalance, CurrentBalanceResponse, HistoricBalance } from './types';
 
-const API_HOST = "https://prt-tracker-zing.deno.dev"
-const API_KEY = "JtEhz6eCcnMDvGvrdMvCVOVpSuv7DeLmt1fr5zPTHAJbOWM5HoXHfDL69WSXrgMo"
+const NEXT_API_HOST = process.env.NEXT_PUBLIC_API_HOST
 
 export default function Dashboard() {
   const [historicData, setHistoricData] = useState([]);
@@ -24,8 +23,8 @@ export default function Dashboard() {
     async function fetchData() {
       try {
         const [histRes, currRes] = await Promise.all([
-          fetch(`${API_HOST}/api/v1/balances/historic`, { headers: { "x-api-key": API_KEY}}),
-          fetch(`${API_HOST}/api/v1/balances`, { headers: { "x-api-key": API_KEY}})
+          fetch(`${NEXT_API_HOST}/api/v1/balances/historic`),
+          fetch(`${NEXT_API_HOST}/api/v1/balances`)
         ]);
         const [histJson, currJson] = await Promise.all([
           histRes.json(),
