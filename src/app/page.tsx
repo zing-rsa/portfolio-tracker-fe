@@ -52,41 +52,52 @@ export default function Dashboard() {
   if (loading || !currentData) return <div className="text-center mt-8">Loading...</div>;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Portfolio Dashboard</h1>
-
+    <div className="container mx-auto p-6 max-w-7xl">
+      <h1 className="text-4xl font-bold text-gray-800 mb-10 text-center">📊 Portfolio Dashboard</h1>
+  
       {/* Historic Data Chart */}
-      <div className="bg-white shadow rounded-lg p-6 mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Historic Total Value</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={historicData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="total" stroke="#4F46E5" strokeWidth={2} dot={false} />
-          </LineChart>
-        </ResponsiveContainer>
+      <div className="bg-gradient-to-br from-white to-gray-50 shadow-xl rounded-2xl p-8 mb-12">
+        <h2 className="text-2xl font-bold text-gray-700 mb-6">Historic Total Value</h2>
+        <div className="w-full h-72">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={historicData} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+              <CartesianGrid strokeDasharray="4 4" stroke="#e5e7eb" />
+              <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+              <YAxis tick={{ fontSize: 12 }} />
+              <Tooltip contentStyle={{ borderRadius: '8px', backgroundColor: '#f9fafb' }} />
+              <Line type="monotone" dataKey="total" stroke="#6366F1" strokeWidth={3} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-
+  
       {/* Current Balances */}
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-2xl font-semibold mb-4">Current Balances</h2>
-        <p className="text-xl font-medium mb-2">
-          Total USD: <span className="text-indigo-600">${currentData.totalUsd.toLocaleString()}</span>
-        </p>
+      <div className="bg-gradient-to-br from-white to-gray-50 shadow-xl rounded-2xl p-8">
+        <h2 className="text-2xl font-bold text-gray-700 mb-8">Current Balances</h2>
+  
+        <div className="mb-10">
+          <p className="text-xl text-gray-600 mb-1">Total USD:</p>
+          <p className="text-3xl font-bold text-indigo-600">${currentData.totalUsd.toLocaleString()}</p>
+        </div>
+  
         {currentData.addresses.map((addr: AddressBalance, idx: number) => (
-          <div key={idx} className="mb-6">
-            <p className="font-semibold break-all mb-1">Address: {addr.address}</p>
-            <p className="mb-2">Address Total USD: ${addr.totalUsd.toLocaleString()}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {addr.values.map((val, i) => (
-                <div key={i} className="p-4 bg-gray-50 rounded-lg shadow-sm">
-                  <p className="font-semibold">{val.symbol}</p>
-                  <p>Qty: {val.qty}</p>
-                  <p>Total USD: ${val.totalUsd.toLocaleString()}</p>
-                </div>
-              ))}
+          <div key={idx} className="mb-10">
+            <div className="bg-white p-6 rounded-xl shadow-sm mb-6">
+              <p className="font-semibold text-gray-700 break-all mb-2">📬 Address:</p>
+              <p className="text-gray-500 break-all mb-4">{addr.address}</p>
+              <p className="text-gray-600 mb-4">
+                Address Total USD: <span className="text-indigo-500 font-semibold">${addr.totalUsd.toLocaleString()}</span>
+              </p>
+  
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {addr.values.map((val, i) => (
+                  <div key={i} className="p-5 bg-gray-100 hover:bg-gray-200 transition rounded-lg shadow-md">
+                    <p className="text-lg font-semibold text-gray-700 mb-2">{val.symbol}</p>
+                    <p className="text-gray-600 mb-1">Qty: {val.qty}</p>
+                    <p className="text-gray-600">Total USD: ${val.totalUsd.toLocaleString()}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))}
