@@ -26,6 +26,7 @@ export interface HistoricBalance {
     qty: number;
     /** USD value for this token position */
     totalUsd: number;
+    priceUsd: number;
   }
   
   /**
