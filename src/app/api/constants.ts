@@ -1,4 +1,4 @@
-export const API_HOST = "https://prt-tracker-zing.deno.dev"
+export const API_HOST = process.env.API_HOST;
 export const API_KEY = process.env.API_KEY;
   
 if (!API_HOST) {
