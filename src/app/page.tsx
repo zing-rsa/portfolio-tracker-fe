@@ -102,7 +102,7 @@ export default function Dashboard() {
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
                   <Avatar className="bg-white/10 text-white" />
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold break-all text-white">{addr.address}</h3>
+                    <h3 className="text-sm font-semibold break-all text-white">{addr.address}</h3>
                     <p className="text-sm text-gray-400">
                       Address Total USD:{" "}
                       <span className="text-white font-semibold">
