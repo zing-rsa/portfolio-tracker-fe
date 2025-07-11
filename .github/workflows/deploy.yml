@@ -32,6 +32,8 @@ jobs:
             vercel deploy --prod \
             --env NEXT_PUBLIC_API_HOST="https://prt-tracker-fe.vercel.app/" \
             --env API_KEY=${{ secrets.API_KEY }} \
+            --env API_HOST="https://prt-tracker-zing.deno.dev" \
             --build-env NEXT_PUBLIC_API_HOST="https://prt-tracker-fe.vercel.app/" \
             --build-env API_KEY=${{ secrets.API_KEY }} \
+            --build-env API_HOST="https://prt-tracker-zing.deno.dev" \
             --token=${{ secrets.VERCEL_TOKEN }}
