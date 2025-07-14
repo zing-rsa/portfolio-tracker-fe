@@ -27,6 +27,8 @@ export interface HistoricBalance {
     /** USD value for this token position */
     totalUsd: number;
     priceUsd: number;
+    quotedSymbol: string;
+    priceInQuotedSymbol: number;
   }
   
   /**

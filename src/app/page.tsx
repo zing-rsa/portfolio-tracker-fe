@@ -124,6 +124,14 @@ export default function Dashboard() {
                       <p className="text-sm text-white font-semibold">
                         Total USD: ${val.totalUsd.toLocaleString()}
                       </p>
+                      <p className="text-sm text-white font-semibold">
+                        {
+                          val.quotedSymbol != 'USD' ?
+                            <> Exchange: {val.symbol}/{val.quotedSymbol}: {val.priceInQuotedSymbol} </>
+                          :
+                            <> Exchange: N/A </>
+                        }
+                      </p>
                     </div>
                   ))}
                 </div>
